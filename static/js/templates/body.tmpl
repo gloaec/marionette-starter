@@ -1,6 +1,6 @@
 <div id="sidebar" class="span3"></div>
 <div id="main" class="span9">
-  <h1>Architecture Suggérée</h1>
+  <h1>Architecture</h1>
   
   <ul>
     <li>
@@ -80,35 +80,150 @@
 
   <h2>Créer un model</h2>
 
+<code>static/js/models/Shape.js</code>
 <pre>
-var Shape = Backbone.Model.extend({
-    defaults: {
-        x:50,
-        y:50,
-        width:150,
-        height:150,
-        color:'black'
-    },
-    setTopLeft: function(x,y) {
-        this.set({ x:x, y:y });
-    },
-    setDim: function(w,h) {
-        this.set({ width:w, height:h });
-    },
-});  
+define(['vent'], function(vent){
+    use "strict";  
+  
+    var Shape = Backbone.Model.extend({
+        defaults: {
+            x:50,
+            y:50,
+            width:150,
+            height:150,
+            color:'black'
+        },
+        setTopLeft: function(x,y) {
+            this.set({ x:x, y:y });
+        },
+        setDim: function(w,h) {
+            this.set({ width:w, height:h });
+        },
+    }); 
+    return Shape;
+}); 
 </pre>
+
+  <ul>
+    <li class="nav-header">Model Methods</li>
+    <li><code>model.get(attribute)</code></li> 
+    <li><code>model.set(attributes, [options])</code> Triggers <i>change</i></li> 
+    <li><code>model.escape(attribute)</code> == <code>escapeHtml(model.get(attribute))</code></li> 
+    <li><code>model.has(attribute)</code> <code>true</code> si l'attribut existe</li> 
+    <li><code>model.unset(attribute, [options])</code> Remove 1 attribute - Triggers <i>change</i></li> 
+    <li><code>model.clear([options])</code> Remove all Attributes - Triggers <i>change</i></li>
+    <li><code>model.id</code> (integer id or UUID). Models can be retrieved by id from collections, and the id is used to generate model URLs by default. </li> 
+    <li><code>model.cid</code> Client Id unique identifier</li> 
+    <li><code>model.attributes</code> Model Array Attributes</li> 
+    <li><code>model.changed</code> Attributes changed since last trigger of <i>change</i> event</li> 
+    <li><code>model.toJSON()</code> JSON copy of the model</li> 
+    <li><code>model.sync(method, model, [options])</code> Methode de synchronisation du model </li> 
+    <li><code>model.fetch([options])</code> Instancie le model avec les attributs distants (via Backbone.sync)</li> 
+    <li><code>model.save([attributes], [options])</code> Sauvegarder le model sur le server distant (via.Backbone.sync)</li>
+    <li><code>model.destroy()</code> Supprimer le model distant</li>
+    <li class="nav-header">Underscore Methods</li>
+    <li><code>model.keys</code></li>
+    <li><code>model.values</code></li>
+    <li><code>model.pairs</code></li>
+    <li><code>model.invert</code></li>
+    <li><code>model.pick</code></li>
+    <li><code>model.omit</code></li>
+    <li><code>model.validate</code></li>
+    <li><code>model.validationError</code></li>
+    <li><code>model.isValid</code></li>
+    <li><code>model.url</code></li>
+    <li><code>model.urlRoot</code></li>
+    <li><code>model.parse</code></li>
+    <li><code>model.clone</code></li>
+    <li><code>model.isNew</code></li>
+    <li><code>model.hasChanged</code></li>
+    <li><code>model.changedAttributes</code></li>
+    <li><code>model.previous</code></li>
+    <li><code>model.previousAttributes</code></li>
+  </ul>
 
   <h2>Créer une collection</h2>
   
+<code>static/js/collections/Shapes.js</code>
+<pre>
+define(['vent','models/Shape'], function(vent, Shape){
+    use "strict";  
+      
+    var Shapes = Backbone.Collection.extend({
+    
+    });
+    return Shapes;
+});
+</pre>
+
+  <ul>
+    <li class="nav-header">Collection Methods</li>
+    <li><code>collection.model</code></li>
+    <li><code>collection.models</code></li>
+    <li><code>collection.toJSON</code></li>
+    <li><code>collection.sync</code></li>
+    <li><code>collection.add</code></li>
+    <li><code>collection.remove</code></li>
+    <li><code>collection.reset</code></li>
+    <li><code>collection.set</code></li>
+    <li><code>collection.get</code></li>
+    <li><code>collection.at</code></li>
+    <li><code>collection.push</code></li>
+    <li><code>collection.pop</code></li>
+    <li><code>collection.unshift</code></li>
+    <li><code>collection.shift</code></li>
+    <li><code>collection.slice</code></li>
+    <li><code>collection.length</code></li>
+    <li><code>collection.comparator</code></li>
+    <li><code>collection.sort</code></li>
+    <li><code>collection.pluck</code></li>
+    <li><code>collection.where</code></li>
+    <li><code>collection.findWhere</code></li>
+    <li><code>collection.url</code></li>
+    <li><code>collection.parse</code></li>
+    <li><code>collection.clone</code></li>
+    <li><code>collection.fetch</code></li>
+    <li><code>collection.create</code></li>
+    <li class="nav-header">Underscore Methods</li>
+    <li><code>collection.forEach (each)</code></li>
+    <li><code>collection.map (collect)</code></li>
+    <li><code>collection.reduce (foldl, inject)</code></li>
+    <li><code>collection.reduceRight (foldr)</code></li>
+    <li><code>collection.find (detect)</code></li>
+    <li><code>collection.filter (select)</code></li>
+    <li><code>collection.reject</code></li>
+    <li><code>collection.every (all)</code></li>
+    <li><code>collection.some (any)</code></li>
+    <li><code>collection.contains (include)</code></li>
+    <li><code>collection.invoke</code></li>
+    <li><code>collection.max</code></li>
+    <li><code>collection.min</code></li>
+    <li><code>collection.sortBy</code></li>
+    <li><code>collection.groupBy</code></li>
+    <li><code>collection.sortedIndex</code></li>
+    <li><code>collection.shuffle</code></li>
+    <li><code>collection.toArray</code></li>
+    <li><code>collection.size</code></li>
+    <li><code>collection.first (head, take)</code></li>
+    <li><code>collection.initial</code></li>
+    <li><code>collection.rest (tail)</code></li>
+    <li><code>collection.last</code></li>
+    <li><code>collection.without</code></li>
+    <li><code>collection.indexOf</code></li>
+    <li><code>collection.lastIndexOf</code></li>
+    <li><code>collection.isEmpty</code></li>
+    <li><code>collection.chain</code></li>
+  </ul>
+
   <h1>Marionette</h1>
+
   <h2>Créer une vue...</h2>
   <h3>... statique : <code>Backbone.View / Marionette.View</code></h3>
   <p>Vue Standard Backbone. A éviter<p>
+  <h3>... avec des régions : <code>Marionette.Layout</code></h3>
   <h3>... pour afficher un model : <code>Marionette.ItemView</code></h3>
   <p></p>
-  <pre>
-I think that 
-
+<pre class="prettyprint linenums language-js">
 MyView = Backbone.Marionette.ItemView.extend({
   template: "#my-template",
 
@@ -117,7 +232,6 @@ MyView = Backbone.Marionette.ItemView.extend({
       return this.name + " is the coolest!"
     }
   }
-
 });
 
 model = new Backbone.Model({name: "Backbone.Marionette"});
@@ -126,7 +240,7 @@ view = new MyView({
 });
 
 view.render(); 
-  </pre>
+</pre>
   <h3>... pour afficher une collection : <code>Marionette.CollectionView</code></h3>
   <h3>... pour afficher une collection encpasulée : <code>Marionette.CompositeView</code></h3>
 </div>

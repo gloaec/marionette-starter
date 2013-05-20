@@ -6,7 +6,8 @@ require.config({
     marionette : 'lib/backbone.marionette',
     jquery     : 'lib/jquery.min',
     bootstrap  : 'lib/bootstrap.min',
-    tpl        : 'lib/tpl'
+    tpl        : 'lib/tpl',
+    prettify   : 'lib/prettify.min'
   },
 
   shim : {
@@ -23,6 +24,9 @@ require.config({
     marionette : {
       exports : 'Backbone.Marionette',
       deps : ['backbone']
+    },
+    prettify: {
+      deps : ['jquery','bootstrap']
     }
   },
   
@@ -32,7 +36,6 @@ require.config({
 require(['app','backbone','routers/index','controllers/index'],
 function (app,Backbone,Router,Controller){
   "use strict";
-
   app.start();
   
   app.router = new Router({
