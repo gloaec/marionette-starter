@@ -35,6 +35,47 @@
 
   <h1>RequireJS</h1>
 
+  <code>module1.js</code>
+  <pre>
+    define(
+      [],
+      function(){
+        return {
+          foo: 'foo',
+          bar: 'bar'          
+        };
+      }
+    );
+  </pre>
+
+  <code>module2.js</code>
+  <pre>
+    define(
+      ['module1'],
+      function(module1){
+        return {
+          foo: module1.foo,
+          bar: function(foo){ 
+            return foo+' bar'; 
+          }
+        };
+      }
+    );
+  </pre>
+  
+  <code>app.js</code>
+  <pre>
+    require(
+      ['module1','module2'],
+      function(module1, module2){
+        alert(module2.bar(module1.foo);
+      }
+    );
+  </pre>
+  <pre>
+
+  </pre>
+
   <h1>Backbone</h1>
 
   <h2>Créer un model</h2>
