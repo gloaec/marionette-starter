@@ -1,0 +1,91 @@
+<div id="sidebar" class="span3"></div>
+<div id="main" class="span9">
+  <h1>Architecture Suggérée</h1>
+  
+  <ul>
+    <li>
+      <code>static/</code> Racine des fichiers statiques (=~ public/)
+      <ul>
+        <li><code>css/</code> Feuilles de styles</li>
+        <li><code>font/</code> Polices</li>
+        <li><code>img/</code> Images</li>
+        <li>
+          <code>js/</code> Racine Javascript
+          <ul>
+            <li><code>collections/</code> Backbone Collections</li>
+            <li><code>controllers/</code> Backbone Controlleurs (default: index.js). Implémente les methodes appellées depuis les routeurs</li>
+            <li><code>helpers/</code> Eventuels Modules d'aide (templates/utils)</li>
+            <li><code>lib/</code> Librairies Externes (jQuery, Backbone, Boostrap, ...)</li>
+            <li><code>models/</code> Backbone Models</li>
+            <li><code>routers/</code> Backbone Routers (default: index.js). Définit les actions à éxécuter en fonction des hash-routes (client uniquement)</li>
+            <li><code>templates/</code> Underscore templates (ruby-like syntaxe)</li>
+            <li><code>views/</code> Backbone Vues </li>
+            <li><code>app.js</code> Initialisation de l'application</li>
+            <li><code>main.js</code> Initialiation de RequireJS (Librairies, Dépendances, Methodes Globales)</li>
+            <li><code>templates.js</code> Liste des templates disponibles</li>
+            <li><code>vent.js</code> Aggrégateur d'évènements</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><code>templates/</code> Jinja2 Templates (uniquement "index.html" si application 100% Backbone)</li>
+    <li><code>server.py</code> Flask Server</li>
+    <li><code>util.py</code> Flask Utils</li>
+  <ul>
+
+  <h1>RequireJS</h1>
+
+  <h1>Backbone</h1>
+
+  <h2>Créer un model</h2>
+
+<pre>
+var Shape = Backbone.Model.extend({
+    defaults: {
+        x:50,
+        y:50,
+        width:150,
+        height:150,
+        color:'black'
+    },
+    setTopLeft: function(x,y) {
+        this.set({ x:x, y:y });
+    },
+    setDim: function(w,h) {
+        this.set({ width:w, height:h });
+    },
+});  
+</pre>
+
+  <h2>Créer une collection</h2>
+  
+  <h1>Marionette</h1>
+  <h2>Créer une vue...</h2>
+  <h3>... statique : <code>Backbone.View / Marionette.View</code></h3>
+  <p>Vue Standard Backbone. A éviter<p>
+  <h3>... pour afficher un model : <code>Marionette.ItemView</code></h3>
+  <p></p>
+  <pre>
+I think that 
+
+MyView = Backbone.Marionette.ItemView.extend({
+  template: "#my-template",
+
+  templateHelpers: {
+    showMessage: function(){
+      return this.name + " is the coolest!"
+    }
+  }
+
+});
+
+model = new Backbone.Model({name: "Backbone.Marionette"});
+view = new MyView({
+  model: model
+});
+
+view.render(); 
+  </pre>
+  <h3>... pour afficher une collection : <code>Marionette.CollectionView</code></h3>
+  <h3>... pour afficher une collection encpasulée : <code>Marionette.CompositeView</code></h3>
+</div>
